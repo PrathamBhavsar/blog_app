@@ -2,6 +2,7 @@ import 'package:blog_app/constants/colors.dart';
 import 'package:blog_app/constants/paddings.dart';
 import 'package:blog_app/constants/textstyles.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TopicScreen extends StatefulWidget {
   const TopicScreen({super.key});
@@ -50,6 +51,14 @@ class _TopicScreenState extends State<TopicScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(onPressed: (){}, child: Text('Login', style: AppTextStyles.loginText,))
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: AppPaddings.scaffoldPadding,
@@ -67,8 +76,13 @@ class _TopicScreenState extends State<TopicScreen> {
                 runSpacing: 4.0,
                 children: topics.map((String topic) {
                   return FilterChip(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(20)),
-                    label: Text(topic, style: AppTextStyles.chipText,),
+                    showCheckmark: false,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusDirectional.circular(20)),
+                    label: Text(
+                      topic,
+                      style: AppTextStyles.chipText,
+                    ),
                     selected: selectedTopics[topic]!,
                     onSelected: (bool selected) {
                       setState(() {
@@ -87,7 +101,11 @@ class _TopicScreenState extends State<TopicScreen> {
                       .where((entry) => entry.value)
                       .map((entry) => entry.key)
                       .toList();
-                  print("Selected topics: $selected");
+                  if (selected.length > 4) {
+                    print("Selected topics: $selected");
+                  } else {
+                    Fluttertoast.showToast(msg: 'Select atleast 5 topics!');
+                  }
                 },
                 child: Container(
                   height: 55,
@@ -98,7 +116,7 @@ class _TopicScreenState extends State<TopicScreen> {
                   child: Center(
                       child: Text(
                     "Continue",
-                    style: TextStyle(color: AppColorsLightMode.backgroundWhite),
+                    style: AppTextStyles.btnTextBlack,
                   )),
                 ),
               ),
