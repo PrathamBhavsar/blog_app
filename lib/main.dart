@@ -1,3 +1,4 @@
+import 'package:blog_app/screens/home_screen.dart';
 import 'package:blog_app/screens/login_screen.dart';
 import 'package:blog_app/screens/topic_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,8 +18,8 @@ void main() async {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: LoginScreen(),
+    return MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
