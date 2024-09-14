@@ -1,6 +1,7 @@
 import 'package:blog_app/constants/colors.dart';
 import 'package:blog_app/constants/paddings.dart';
 import 'package:blog_app/constants/textstyles.dart';
+import 'package:blog_app/constants/util.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -12,37 +13,14 @@ class TopicScreen extends StatefulWidget {
 }
 
 class _TopicScreenState extends State<TopicScreen> {
-  List<String> topics = [
-    "UI Design",
-    "UX Design",
-    "Blog Design",
-    "Visual Design",
-    "Motion",
-    "Graphic",
-    "Typography",
-    "3d",
-    "Icon",
-    "News",
-    "Business",
-    "Sports",
-    "Fashion",
-    "Technology",
-    "Health",
-    "Shopping",
-    "Music",
-    "Video",
-    "Recipe",
-    "Fun",
-    "Entertainment",
-    "Creative"
-  ];
+
 
   Map<String, bool> selectedTopics = {};
 
   @override
   void initState() {
     super.initState();
-    topics.forEach((topic) {
+    AppConstants.topics.forEach((topic) {
       selectedTopics[topic] = false;
     });
   }
@@ -74,7 +52,7 @@ class _TopicScreenState extends State<TopicScreen> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 4.0,
-                children: topics.map((String topic) {
+                children: AppConstants.topics.map((String topic) {
                   return FilterChip(
                     showCheckmark: false,
                     shape: RoundedRectangleBorder(

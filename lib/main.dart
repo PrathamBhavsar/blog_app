@@ -1,4 +1,4 @@
-import 'package:blog_app/screens/home_screen.dart';
+import 'package:blog_app/screens/home_screen/home_screen.dart';
 import 'package:blog_app/screens/login_screen.dart';
 import 'package:blog_app/screens/topic_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
