@@ -1,6 +1,7 @@
 import 'package:blog_app/constants/colors.dart';
 import 'package:blog_app/constants/paddings.dart';
 import 'package:blog_app/constants/textstyles.dart';
+import 'package:blog_app/screens/edit_profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   Future<User?> _signInWithGoogle() async {
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -23,18 +23,22 @@ class _LoginScreenState extends State<LoginScreen> {
         return null;
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final OAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => EditProfileScreen()));
       return userCredential.user;
     } catch (e) {
       Fluttertoast.showToast(msg: 'Failed to sign in with Google: $e');
+      print(e);
       return null;
     }
   }

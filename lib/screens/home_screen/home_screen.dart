@@ -13,18 +13,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;    
+  int _selectedIndex = 0;
 
-     
   final List<Widget> _pages = [
     HomeScreenContent(),
-    const ScreenScreenContent(),
-       
+    const SearchScreenContent(),
+    const SearchScreenContent(),
     const SavedScreenContent(),
     const SettingScreenContent()
   ];
 
-     
   void _onItemTapped(int index) {
     if (index >= 0 && index < _pages.length) {
       setState(() {
@@ -41,7 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddBlogScreenContent(),));
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddBlogScreenContent(),
+          ));
         },
         backgroundColor: AppColorsLightMode.primary,
         child: Icon(
@@ -57,12 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             ClipRect(
               child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen(),));
-                },
-                icon: const Icon(Icons.account_circle_rounded,
-                size: 40,)
-              ),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ProfileScreen(),
+                    ));
+                  },
+                  icon: const Icon(
+                    Icons.account_circle_rounded,
+                    size: 40,
+                  )),
             ),
             Container(
               height: 40,
@@ -79,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: _pages[_selectedIndex],    
+      body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         height: 65,
         child: BottomNavigationBar(
@@ -93,9 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.search_rounded),
               label: '',
             ),
-               
             BottomNavigationBarItem(
-              icon: SizedBox.shrink(),    
+              icon: SizedBox.shrink(),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -111,11 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedItemColor: AppColorsLightMode.text,
           unselectedItemColor: Colors.grey,
           onTap: (int index) {
-               
-              _onItemTapped(index);
-               
+            _onItemTapped(index);
           },
-          type: BottomNavigationBarType.fixed,    
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:blog_app/constants/colors.dart';
 import 'package:blog_app/constants/paddings.dart';
-import 'package:blog_app/constants/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,10 +36,9 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: AppPaddings.scaffoldPadding,  
+        padding: AppPaddings.scaffoldPadding,
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,  
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -122,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(height: 10),  
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -178,21 +176,18 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-
             Column(
               children: List.generate(3, (index) {
                 return Dismissible(
-                  key: Key('$index'),  
-                  direction:
-                      DismissDirection.endToStart,  
+                  key: Key('$index'),
+                  direction: DismissDirection.endToStart,
                   onDismissed: (direction) {
-                     
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Item $index dismissed')),
                     );
                   },
                   background: Container(
-                    color: Colors.red,  
+                    color: Colors.red,
                     alignment: Alignment.centerRight,
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Icon(
@@ -224,7 +219,7 @@ class ProfileScreen extends StatelessWidget {
                               fontSize: 18.0,
                               fontWeight: FontWeight.w400,
                             ),
-                            maxLines: 3,  
+                            maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 12),
@@ -236,6 +231,8 @@ class ProfileScreen extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
+                          const SizedBox(height: 10),
+                          const Divider(indent: 20, endIndent: 20),
                         ],
                       ),
                     ),
